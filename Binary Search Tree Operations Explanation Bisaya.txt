@@ -1,0 +1,68 @@
+----- Explanations -----
+Sayon rajud ni sya once masabtans, prooooomise.. haha :D
+
+1.) This one creates a node (isa lang jud kabuok.. Gi equal nato iyang root-value sa value nga ihatag nimo and i.NULL nato ang iyang left and right)
+
+struct node* newNode(int value){
+       struct node *root = malloc(sizeof(struct node));
+       root->value = value;
+       root->left = NULL;
+       root->right = NULL;
+}
+ 
+
+2.) This one manages the whole insertion process in our Binary search Tree. If NULL na ang root (meaning wala pay sulod) then igo rata mag create og new node and i.return toh sya. Mao nang sa atong main nga function ky naa tay root = insertN(root,value); -> Gi hatag nato ang tree structure sa atong root nga pointer para iyang point into.
+
+Else kung dli nah NULL (naa nay sulod daan). then:
+i-equal nato iyang root->left sa bag.o nga node na atong himuon (recursively) kung ang value ky mas gamay sa current root->value. Else i-equal nato ang root-right sa atong bag.o i.insert nga node. Then we return the whole node structure.
+
+struct node* insertN(struct node *root,int value){
+       if (root == NULL){
+          return newNode(value);
+       } else {
+         if (value < root->value) root->left =  insertN(root->left,value);
+         else root->right = insertN(root->right,value);
+         
+         return root;
+       }
+}
+ 
+
+3.) Kani sya nga function ky mag return og 1 kung nakit.an nya ang value dadto sa atong BST. Kung wala, 0 iyang i.return.  If NULL ang root (walay sulod) then meaning wla jud dadto imong gipangita!.. haha.
+Else kung naay sulod, i.check nato ang value adto nga root kung equal buh sa atong gipangita. Kung equal edi mag return ta 1 else recursively mag search ta sa iyang left kung mas gamay ang value sa root value or sa right kung mas dako.
+
+int searchNode(struct node *root, int value){
+    if (root == NULL) return 0;
+    else {
+         if (root->value == value) return 1;
+         else {
+              if (value < root->value) return searchNode(root->left,value);
+              else return searchNode(root->right,value);
+         }
+    }
+}
+ 
+
+4.) Sayon rani promise! Adto lang ka sa pinaka left sa imong Binary Search tree and makuha na nimo ang pinaka gamay nga value sa imong tree :)
+
+While ang root ky dili NULL (naa pay sulod) then i.check nato kung naa bay sulod iyang next nga left.. Kung wala edi i.return nato toh ky mao nato ang pinaka gamay :D
+
+int findMin(struct node *root){
+    while(root != NULL){
+        if (root->left == NULL) return root->value;
+        else root = root->left;
+    }
+}
+
+
+5.) Same with no. 4... Pero kani lang sya ky padulong sa pinaka right sa imong Binary search tree para makuha ang biggest number :D
+ 
+int findMax(struct node *root){
+   while(root != NULL){
+        if (root->right == NULL) return root->value;
+        else root = root->right;
+    }
+}
+
+
+// Good luck og Au2x sa ato tanan :D
