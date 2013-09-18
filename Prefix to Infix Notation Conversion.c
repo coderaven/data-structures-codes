@@ -69,7 +69,7 @@ int termIndex = 0;
 char terms[MAX_TERMS][MAX_TERM_LENGTH]; 
 
 void getInfix(){
-    char prefix[100], char final[500], char lastPopped;
+    char prefix[100], final[500], lastPopped;
     strcpy(final," ");
     int i,j; // J is used for iterating when adding parenthesis
     
